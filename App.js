@@ -6,61 +6,30 @@ import {
   View
 } from 'react-native';
 
-import ListView from './components/ListView';
+const data = [
+  'Apparel', 
+  'Beauty', 
+  'Electronics', 
+  'Grocery',
+  'Home Improvement',
+  'Jewlry', 
+  'Pharmacy'
+];
+
+import ExpandableList from './components/ExpandableList';
 
 export default class App extends Component {
-  constructor(props) {
-    super(props);
+  
 
-    this.state = {
-      data: [],
-      expanded: false,
-      selectedItem: 'Apparel'
-    };
-
-  }
-
-  componentDidMount() {
-   const data = this.getData();
-
-   this.setState({data})
-  }
-
-  getData = () => {
-   return  [
-       'Apparel', 
-       'Beauty', 
-       'Electronics', 
-       'Grocery',
-       'Home Improvement',
-       'Jewlry', 
-       'Pharmacy'
-     ];
-  }
- 
-  itemPicker = (item, index) => {
-     this.setState({
-       selectedItem: item,
-       expanded: false
-     });
-  }
-
-  expandList = () => {
-   this.setState({
-     expanded: true
-   });
- }
+  
 
  render() {
    return (
      <View style={styles.container}>
-       <ListView selectedItem={this.state.selectedItem} 
-                 expandList={this.expandList} 
-                 itemPicker={this.itemPicker} 
-                 data={this.state.data}
-                 expanded={this.state.expanded}
-                 />
-     </View>
+       <ExpandableList
+        data={data}
+       />
+       </View>
    );
  }
 }
